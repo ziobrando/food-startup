@@ -60,6 +60,8 @@ public class Cena {
     @CommandHandler
     public void aggiungiCommensali(AggiungiCommensali command) {
         // guards? ... c'è qualche limite che NON stiamo considerando?
+
+        // Calcolo lo stato futuro... ma non lo applico.
         int totaleCommensali = this.commensali + command.getCommensali();
         apply(new CommensaliAggiunti(
                 command.getCenaId(),
