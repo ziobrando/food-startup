@@ -1,5 +1,6 @@
 package it.avanscoperta.foodstartup.progettazione.domain;
 
+import it.avanscoperta.foodstartup.progettazione.builders.RicettaBuilder;
 import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.jupiter.api.Test;
@@ -16,17 +17,8 @@ public class CenaTest {
     @Test
     void posso_creare_una_cena_da_una_ricetta() {
 
-        // TODO mettiamo una factory o ad un builder
-
-        ArrayList<Ingrediente> ingredienti = new ArrayList<>();
-                ingredienti.add(new Ingrediente("Rigatoni", 100, "Grammi" ));
-                ingredienti.add(new Ingrediente("Pecorino Romano", 30, "Grammi"));
-                ingredienti.add(new Ingrediente("Pepe nero", 10, "Grammi"));
-                // TODO QB <-- sarà bellissimo rileggerlo fra 2 anni.
-        String preparazione = "Sai tu come fare.";
-        Duration tempo = Duration.of(15, ChronoUnit.MINUTES);
-        int calorie = 560;
-        Ricetta ricetta = new Ricetta("cacio e pepe", ingredienti, preparazione, tempo, calorie);
+        Ricetta ricetta = new RicettaBuilder().cacioEPepe().build();
+        Duration tempo = ricetta.getTempiDiPreparazione();
         CenaId cenaId = CenaId.generate();
         int commensali = 2;
         List<Piatto> portate = new ArrayList<Piatto>();
@@ -34,7 +26,7 @@ public class CenaTest {
         String label = "cacio e pepe";
 
         ProgettaDaRicetta progettaDaRicetta = new ProgettaDaRicetta(cenaId, ricetta, commensali);
-        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, ricetta, commensali, portate, tempo, label, calorie);
+        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, ricetta, commensali, portate, tempo, ricetta.getNome(), ricetta.getCalorie());
 
         fixture.givenNoPriorActivity()
                 .when(progettaDaRicetta)

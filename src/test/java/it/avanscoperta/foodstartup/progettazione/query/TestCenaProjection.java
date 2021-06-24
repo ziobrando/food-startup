@@ -1,6 +1,7 @@
 package it.avanscoperta.foodstartup.progettazione.query;
 
 
+import it.avanscoperta.foodstartup.progettazione.builders.RicettaBuilder;
 import it.avanscoperta.foodstartup.progettazione.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,9 @@ class TestCenaProjection {
         Duration tempo = Duration.of(15, ChronoUnit.MINUTES);
         int calorie = 560;
         int commensali = 2;
-        Ricetta ricetta = new Ricetta("Cacio e Pepe", ingredienti, preparazione, tempo, calorie);
+        //Ricetta ricetta = new Ricetta("Cacio e Pepe", ingredienti, preparazione, tempo, calorie);
+        Ricetta ricetta = new RicettaBuilder().cacioEPepe().build();
+
         List<Piatto> portate = Arrays.asList(Piatto.fromRicetta(ricetta, commensali));
 
         CenaId cenaId = CenaId.generate();
@@ -52,7 +55,11 @@ class TestCenaProjection {
 
         assertEquals("Cacio e Pepe", found.label);
 
-
     }
+
+
+
+
+
 
 }
