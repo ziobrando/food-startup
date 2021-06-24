@@ -18,6 +18,7 @@ public class Cena {
 
     @AggregateIdentifier
     private CenaId cenaId;
+    private int commensali;
 
     private Cena() {}
 
@@ -41,6 +42,7 @@ public class Cena {
     public void handle(CenaProgettata event) {
         // Qui copio lo stato ricevuto e non faccio domande.
         this.cenaId = event.getCenaId();
+        this.commensali = event.getCommensali();
     }
 
     @CommandHandler
@@ -52,5 +54,26 @@ public class Cena {
         ));
 
     }
+
+    // FIXME: piccola trappolina di ES: il comportamento è testato solo se verifichiamo l'azione complementare.
+
+    @CommandHandler
+    public void aggiungiCommensali(AggiungiCommensali command) {
+        // guards? ... c'è qualche limite che NON stiamo considerando?
+        int totaleCommensali = this.commensali + command.getCommensali();
+        apply(new CommensaliAggiunti(
+                command.getCenaId(),
+                command.getCommensali(),
+                totaleCommensali
+        ));
+    }
+
+    @EventSourcingHandler
+    public void handle(CommensaliAggiunti event) {
+        // TODO: di questa dobbiamo parlare.
+        this.commensali = event.getTotaleCommensali();
+    }
+
+
 
 }

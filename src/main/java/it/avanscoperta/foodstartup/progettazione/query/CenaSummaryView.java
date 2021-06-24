@@ -24,7 +24,15 @@ public class CenaSummaryView {
 
     // TODO: chiarire se serve la data?
 
-
+    /**
+     * Qui si tratta solo di una struttura dati, l'utilità di avere un costruttore è un po' meno forte...
+     * @param cenaId
+     * @param label
+     * @param commensali
+     * @param portate
+     * @param caloriePerPersona
+     * @param tempoDiPreparazione
+     */
     public CenaSummaryView(String cenaId, String label, int commensali, List<Piatto> portate, int caloriePerPersona, Duration tempoDiPreparazione) {
         this.cenaId = cenaId;
         this.label = label;

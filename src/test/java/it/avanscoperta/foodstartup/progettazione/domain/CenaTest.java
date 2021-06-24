@@ -57,6 +57,19 @@ class CenaTest {
                 .expectEvents(portataAggiunta);
     }
 
+    @Test
+    void posso_aggiungere_commensali() {
+        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, cacioEPepe, commensali, portate, ricetta.getTempoPreparazione(), ricetta.getNome(), ricetta.getCalorie());
+
+        AggiungiCommensali aggiungiCommensali = new AggiungiCommensali(cenaId, 2);
+        CommensaliAggiunti commensaliAggiunti = new CommensaliAggiunti(cenaId, 2, 4);
+
+        fixture.given(cenaProgettata)
+                .when(aggiungiCommensali)
+                .expectEvents(commensaliAggiunti);
+
+    }
+
 
 
 

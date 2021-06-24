@@ -11,7 +11,7 @@ public class Ricetta {
     private final String nome;
     private final List<Ingrediente> ingredienti;
     private final String preparazione;
-    private final Duration tempoPreparazione; // TODO Rivelare il segreto ma non subito.
+    private final Duration tempoPreparazione; // Rivelare il segreto ma non subito.
     private final int calorie;
 
     public Ricetta(String nome, List<Ingrediente> ingredienti, String preparazione, Duration tempoPreparazione, int calorie) {
