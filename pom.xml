@@ -16,6 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <axon.version>4.4.1</axon.version>
+        <cucumber.version>6.8.1</cucumber.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,6 +41,26 @@
             <version>${axon.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
