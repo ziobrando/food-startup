@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
@@ -49,7 +50,7 @@ public class TestCenaProjection {
         // Then
         CenaSummaryView found = repository.findById(cenaId.toString()).get();
 
-        assertTrue(found.label.equals("Cacio e Pepe"));
+        assertEquals("Cacio e Pepe", found.label);
 
 
     }

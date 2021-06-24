@@ -1,7 +1,8 @@
 package it.avanscoperta.foodstartup.progettazione.domain;
 
-import it.avanscoperta.foodstartup.progettazione.domain.Ricetta;
-
+/**
+ * Value Object: Espone qualche comportamento interessante?
+ */
 public class Piatto {
 
     String intestazione;
