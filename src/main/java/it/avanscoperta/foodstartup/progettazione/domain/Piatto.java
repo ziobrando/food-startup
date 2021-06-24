@@ -7,16 +7,31 @@ import java.util.Objects;
  */
 public class Piatto {
 
-    private final String intestazione;
     private final int porzioni; // TODO: Shoulde we make it a VO
     private final Ricetta ricetta; // Così o link?
     private final int calorie;
+    private final String nome;
 
-    public Piatto(Ricetta ricetta, int porzioni) {
-        this.intestazione = ricetta.getNome();
+    public Piatto(String nome, Ricetta ricetta, int porzioni, int calorie) {
+        this.nome = nome;
         this.ricetta = ricetta;
         this.porzioni = porzioni;
-        this.calorie = ricetta.getCalorie();
+        this.calorie = calorie;
+    }
+
+    /**
+     * Factory method che fa qualche piccola magia di superficie.
+     * @param ricetta
+     * @param porzioni
+     * @return
+     */
+    public static Piatto fromRicetta(Ricetta ricetta, int porzioni) {
+        return new Piatto(
+                ricetta.getNome(),
+                ricetta,
+                porzioni,
+                ricetta.getCalorie()
+        );
     }
 
     @Override
@@ -24,11 +39,11 @@ public class Piatto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piatto piatto = (Piatto) o;
-        return porzioni == piatto.porzioni && calorie == piatto.calorie && intestazione.equals(piatto.intestazione) && ricetta.equals(piatto.ricetta);
+        return porzioni == piatto.porzioni && calorie == piatto.calorie && nome.equals(piatto.nome) && ricetta.equals(piatto.ricetta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(intestazione, porzioni, ricetta, calorie);
+        return Objects.hash(nome, porzioni, ricetta, calorie);
     }
 }

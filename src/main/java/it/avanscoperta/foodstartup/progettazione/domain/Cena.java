@@ -30,7 +30,7 @@ public class Cena {
                 command.getCenaId(),
                 command.getRicetta(),
                 command.getCommensali(),
-                Arrays.asList(new Piatto(command.getRicetta(), command.getCommensali())),
+                Arrays.asList(Piatto.fromRicetta(command.getRicetta(), command.getCommensali())),
                 command.getRicetta().getTempiDiPreparazione(),
                 command.getRicetta().getNome(),
                 command.getRicetta().getCalorie()

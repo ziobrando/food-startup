@@ -1,6 +1,5 @@
 package it.avanscoperta.foodstartup.progettazione.query;
 
-
 import it.avanscoperta.foodstartup.progettazione.domain.CenaProgettata;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ public class CenaProjection {
 
     @Autowired
     private CenaSummaryRepository repository;
-
 
     @EventHandler
     public void on(CenaProgettata event) {
@@ -24,7 +22,6 @@ public class CenaProjection {
                 event.getTempoDiPreparazione()
         );
         repository.save(view);
-
     }
 
 }

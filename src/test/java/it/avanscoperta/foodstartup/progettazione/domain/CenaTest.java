@@ -30,7 +30,7 @@ public class CenaTest {
         CenaId cenaId = CenaId.generate();
         int commensali = 2;
         List<Piatto> portate = new ArrayList<Piatto>();
-        portate.add(new Piatto(ricetta, commensali));
+        portate.add(Piatto.fromRicetta(ricetta, commensali));
         String label = "cacio e pepe";
 
         ProgettaDaRicetta progettaDaRicetta = new ProgettaDaRicetta(cenaId, ricetta, commensali);

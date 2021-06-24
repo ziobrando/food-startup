@@ -1,7 +1,6 @@
 package it.avanscoperta.foodstartup.progettazione.query;
 
 
-import io.cucumber.java.sl.Ce;
 import it.avanscoperta.foodstartup.progettazione.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
  * Test su quello che mi serve vedere del read model della cena che sto progettando.
@@ -22,7 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class TestCenaProjection {
 
+    @Autowired
     CenaProjection projection = new CenaProjection();
+
     @Autowired
     CenaSummaryRepository repository;
 
@@ -39,7 +39,7 @@ class TestCenaProjection {
         int calorie = 560;
         int commensali = 2;
         Ricetta ricetta = new Ricetta("Cacio e Pepe", ingredienti, preparazione, tempo, calorie);
-        List<Piatto> portate = Arrays.asList(new Piatto(ricetta, commensali));
+        List<Piatto> portate = Arrays.asList(Piatto.fromRicetta(ricetta, commensali));
 
         CenaId cenaId = CenaId.generate();
         CenaProgettata cenaProgettata = new CenaProgettata(cenaId, ricetta, commensali, portate,tempo, "Cacio e Pepe", calorie );
