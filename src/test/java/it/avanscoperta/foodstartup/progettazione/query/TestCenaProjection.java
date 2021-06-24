@@ -29,23 +29,14 @@ class TestCenaProjection {
 
     @Test
     void ho_un_riassunto_su_cena_progettata() {
-        // Given
-        ArrayList<Ingrediente> ingredienti = new ArrayList<>();
-        ingredienti.add(new Ingrediente("Rigatoni", 100, "Grammi" ));
-        ingredienti.add(new Ingrediente("Pecorino Romano", 30, "Grammi"));
-        ingredienti.add(new Ingrediente("Pepe nero", 10, "Grammi"));
-        // TODO QB <-- sarà bellissimo rileggerlo fra 2 anni.
-        String preparazione = "Sai tu come fare.";
-        Duration tempo = Duration.of(15, ChronoUnit.MINUTES);
-        int calorie = 560;
+
         int commensali = 2;
-        //Ricetta ricetta = new Ricetta("Cacio e Pepe", ingredienti, preparazione, tempo, calorie);
         Ricetta ricetta = new RicettaBuilder().cacioEPepe().build();
 
         List<Piatto> portate = Arrays.asList(Piatto.fromRicetta(ricetta, commensali));
 
         CenaId cenaId = CenaId.generate();
-        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, ricetta, commensali, portate,tempo, "Cacio e Pepe", calorie );
+        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, ricetta, commensali, portate, ricetta.getTempoPreparazione(), "Cacio e Pepe", ricetta.getCalorie() );
 
         // When
         projection.on(cenaProgettata);

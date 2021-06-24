@@ -11,14 +11,14 @@ public class Ricetta {
     private final String nome;
     private final List<Ingrediente> ingredienti;
     private final String preparazione;
-    private final Duration tempiDiPreparazione; // TODO Rivelare il segreto ma non subito.
+    private final Duration tempoPreparazione; // TODO Rivelare il segreto ma non subito.
     private final int calorie;
 
-    public Ricetta(String nome, List<Ingrediente> ingredienti, String preparazione, Duration tempiDiPreparazione, int calorie) {
+    public Ricetta(String nome, List<Ingrediente> ingredienti, String preparazione, Duration tempoPreparazione, int calorie) {
         this.nome = nome;
         this.ingredienti = ingredienti;
         this.preparazione = preparazione;
-        this.tempiDiPreparazione = tempiDiPreparazione;
+        this.tempoPreparazione = tempoPreparazione;
         this.calorie = calorie;
     }
 
@@ -34,8 +34,8 @@ public class Ricetta {
         return preparazione;
     }
 
-    public Duration getTempiDiPreparazione() {
-        return tempiDiPreparazione;
+    public Duration getTempoPreparazione() {
+        return tempoPreparazione;
     }
 
     public int getCalorie() {

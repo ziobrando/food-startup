@@ -31,7 +31,7 @@ public class Cena {
                 command.getRicetta(),
                 command.getCommensali(),
                 Arrays.asList(Piatto.fromRicetta(command.getRicetta(), command.getCommensali())),
-                command.getRicetta().getTempiDiPreparazione(),
+                command.getRicetta().getTempoPreparazione(),
                 command.getRicetta().getNome(),
                 command.getRicetta().getCalorie()
         ));
@@ -41,6 +41,16 @@ public class Cena {
     public void handle(CenaProgettata event) {
         // Qui copio lo stato ricevuto e non faccio domande.
         this.cenaId = event.getCenaId();
+    }
+
+    @CommandHandler
+    public void aggiungiPortata(AggiungiPortata command) {
+        // Guards?
+
+        apply(new PortataAggiunta(
+                command.getCenaId(), command.getRicetta(), command.getPorzioni()
+        ));
+
     }
 
 }
