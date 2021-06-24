@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test su quello che mi serve vedere del read model della cena che sto progettando.
  */
 @SpringBootTest
-public class TestCenaProjection {
+class TestCenaProjection {
 
     CenaProjection projection = new CenaProjection();
     @Autowired
