@@ -22,7 +22,6 @@ public class Cena {
 
     private Cena() {}
 
-
     @CommandHandler
     public Cena(ProgettaDaRicetta command) {
         // Guard Conditions?
@@ -74,6 +73,26 @@ public class Cena {
     public void handle(CommensaliAggiunti event) {
         // TODO: di questa dobbiamo parlare.
         this.commensali = event.getTotaleCommensali();
+    }
+
+    @CommandHandler
+    public void rimuoviCommensali(RimuoviCommensali command) {
+        if (command.getCommensali() >= this.commensali) {
+            throw new IllegalArgumentException("Un successone! Hai più pacchi che invitati!");
+        }
+
+        // Calcolo lo stato futuro... ma non lo applico ancora.
+        int totaleCommensali = this.commensali - command.getCommensali();
+        apply(new CommensaliRimossi(
+                command.getCenaId(),
+                command.getCommensali(),
+                totaleCommensali
+        ));
+    }
+
+    @EventSourcingHandler
+    public void handle(CommensaliRimossi event) {
+        this.commensali = event.getRimasti();
     }
 
 

@@ -8,6 +8,12 @@ public class CommensaliAggiunti {
     private final int aggiunti;
     private final int totaleCommensali;
 
+    /**
+     *
+     * @param cenaId la cena a cui aggiungere commensali
+     * @param aggiunti il n° di commensali aggiunti
+     * @param totaleCommensali il totale di commensali risultanti.
+     */
     public CommensaliAggiunti(CenaId cenaId, int aggiunti, int totaleCommensali) {
         this.cenaId = cenaId;
         this.aggiunti = aggiunti;

@@ -67,9 +67,29 @@ class CenaTest {
         fixture.given(cenaProgettata)
                 .when(aggiungiCommensali)
                 .expectEvents(commensaliAggiunti);
-
     }
 
+    @Test
+    void posso_rimuovere_commensali() {
+        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, cacioEPepe, commensali, portate, ricetta.getTempoPreparazione(), ricetta.getNome(), ricetta.getCalorie());
+        RimuoviCommensali rimuoviCommensali = new RimuoviCommensali(cenaId, 1);
+        CommensaliRimossi commensaliRimossi = new CommensaliRimossi(cenaId, 1, 1);
+
+        fixture.given(cenaProgettata)
+                .when(rimuoviCommensali)
+                .expectEvents(commensaliRimossi);
+    }
+
+
+    @Test
+    void non_posso_rimuovere_troppi_commensali() {
+        CenaProgettata cenaProgettata = new CenaProgettata(cenaId, cacioEPepe, commensali, portate, ricetta.getTempoPreparazione(), ricetta.getNome(), ricetta.getCalorie());
+        RimuoviCommensali rimuoviCommensali = new RimuoviCommensali(cenaId, 3);
+
+        fixture.given(cenaProgettata)
+                .when(rimuoviCommensali)
+                .expectException(RuntimeException.class);
+    }
 
 
 
